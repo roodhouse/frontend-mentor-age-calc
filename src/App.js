@@ -1,23 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import Date from './components/Date'
+import Output from './components/Output'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <div id='mainWrapper' className='bg-lightGray h-screen pt-[88px] px-4 pb-[238px]'>
+      <div id='mainContainer' className='bg-white rounded-[24px_24px_100px_24px] py-12 px-6'>
+        <div id='dateWrapper'>
+          <Date />
+        </div>
+        <div id='outputWrapper'>
+          <Output />
+        </div>
+      </div>
+     </div>
     </div>
   );
 }
