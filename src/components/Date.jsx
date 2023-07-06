@@ -6,31 +6,32 @@ function Date() {
     <>
       <div id="dateContainer">
         <form>
+          <div id="inputContainer">
+            <div id="dayContainer" className='mr-4'>
+              <div id="dayLabel" className='font-["Poppins"] text-xs tracking-[3px] font-bold text-gray mb-1'>
+                <label htmlFor="day">DAY</label>
+              </div>
+              <div id="dayInput">
+                <input type="number" name='day' placeholder='DD' className='px-4 py-3 border border-solid border-line rounded-lg w-[87px]' />
+              </div>
+            </div>
 
-          <div id="dayContainer">
-            <div id="dayLabel">
-              <label htmlFor="day">Day</label>
+            <div id="monthContainer" className='mr-4'>
+              <div id="monthLabel" className='font-["Poppins"] text-xs tracking-[3px] font-bold text-gray mb-1'>
+                <label htmlFor="month">MONTH</label>
+              </div>
+              <div id="monthInput">
+                <input type="number" name='month' placeholder='MM' className='px-4 py-3 border border-solid border-line rounded-lg w-[87px]' />
+              </div>
             </div>
-            <div id="dayInput">
-              <input type="number" name='day' placeholder='DD' />
-            </div>
-          </div>
 
-          <div id="monthContainer">
-            <div id="monthLabel">
-              <label htmlFor="month">Month</label>
-            </div>
-            <div id="monthInput">
-              <input type="number" name='month' placeholder='MM' />
-            </div>
-          </div>
-
-          <div id="yearContainer">
-            <div id="yearLabel">
-              <label htmlFor="year">Year</label>
-            </div>
-            <div id="yearInput">
-              <input type="number" name='year' placeholder='YYYY' />
+            <div id="yearContainer">
+              <div id="yearLabel" className='font-["Poppins"] text-xs tracking-[3px] font-bold text-gray mb-1'>
+                <label htmlFor="year">YEAR</label>
+              </div>
+              <div id="yearInput">
+                <input type="number" name='year' placeholder='YYYY' className='px-4 py-3 border border-solid border-line rounded-lg w-[87px]' />
+              </div>
             </div>
           </div>
 
