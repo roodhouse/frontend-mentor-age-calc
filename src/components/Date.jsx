@@ -6,7 +6,7 @@ function Date() {
     <>
       <div id="dateContainer">
         <form>
-          <div id="inputContainer" className='flex mb-[48px]'>
+          <div id="inputContainer" className='flex mb-8'>
             <div id="dayContainer" className='mr-4'>
               <div id="dayLabel" className='font-["Poppins"] text-xs tracking-[3px] font-bold text-gray mb-1'>
                 <label htmlFor="day">DAY</label>
@@ -35,10 +35,14 @@ function Date() {
             </div>
           </div>
 
-          <div id="submitContainer">
-            <button type='submit'>
-              <img src={Arrow} alt="Arrow" />
-            </button>
+          <div id="submitContainer" className='flex items-center'>
+            <div id="lineOneContainer" className='w-[116px] h-[1px] bg-line'></div>
+            <div id='buttonContainer' className='w-16 h-16 bg-purple rounded-[216px] flex justify-center items-center'>
+              <button type='submit'>
+                <img src={Arrow} alt="Arrow" className='h-6 w-6' />
+              </button>
+            </div>
+            <div id="lineTwoContainer" className='w-[116px] h-[1px] bg-line'></div>
           </div>
 
         </form>
