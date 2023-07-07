@@ -1,18 +1,62 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Arrow from '../assets/images/icon-arrow.svg'
+import { useForm } from 'react-hook-form'
 
-function Date() {
+function TheDate() {
+  
+  const [day, setDay] = useState('')
+  const [month, setMonth] = useState('')
+  const [year, setYear] = useState('')
+  const [date, setDate] = useState([])
+
+  console.log(`the day is ${day}`)
+  console.log(`the month is ${month}`)
+  console.log(`the year is ${year}`)
+  console.log(`the date is ${date}`)
+
+  const { register, resetField, handleSubmit, formState: {errors} } = useForm({defaultValues: {
+    day: '',
+    month: '',
+    year: ''
+}})
+
+function onSubmit() {
+  const day = document.getElementById('dayInput').firstChild.value
+  const month = document.getElementById('monthInput').firstChild.value
+  const year = document.getElementById('yearInput').firstChild.value
+  console.log(day, month, year)
+
+  setDay(day)
+  setMonth(month)
+  setYear(year)
+
+  
+  setDate([year, month, day])
+
+}
+
+
+console.log(date)
+const birthdate = new Date(date)
+console.log(birthdate)
+
+function onError() {
+  console.log('error')
+}
+
   return (
     <>
       <div id="dateContainer">
-        <form>
+        <form noValidate onSubmit={handleSubmit(onSubmit, onError)}>
           <div id="inputContainer" className='flex mb-8 lg:mb-0'>
             <div id="dayContainer" className='mr-4 lg:mr-8'>
               <div id="dayLabel" className='font-["Poppins"] text-xs tracking-[3px] font-bold text-gray mb-1 lg:text-sm lg:tracking-[3.5px]'>
                 <label htmlFor="day">DAY</label>
               </div>
               <div id="dayInput">
-                <input type="number" name='day' placeholder='DD' className='px-4 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px] mb-1 lg:text-[32px] lg:tracking-[0.32px] lg:px-6 lg:w-[160px] hover:border-purple cursor-pointer' />
+                <input type="number" name='day' placeholder='DD' className='px-4 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px] mb-1 lg:text-[32px] lg:tracking-[0.32px] lg:px-6 lg:w-[160px] hover:border-purple cursor-pointer' 
+                  {...register('day')}
+                />
               </div>
               <div id="dayError" className=' font-["Poppins"] text-red text-xs italic font-normal h-1 text-center lg:text-left lg:text-sm'>
                 <p id='validError' className='hidden'>Must be a valid day</p>
@@ -26,7 +70,9 @@ function Date() {
                 <label htmlFor="month">MONTH</label>
               </div>
               <div id="monthInput">
-                <input type="number" name='month' placeholder='MM' className='px-4 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px] mb-1 lg:text-[32px] lg:tracking-[0.32px] lg:px-6 lg:w-[160px] hover:border-purple cursor-pointer' />
+                <input type="number" name='month' placeholder='MM' className='px-4 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px] mb-1 lg:text-[32px] lg:tracking-[0.32px] lg:px-6 lg:w-[160px] hover:border-purple cursor-pointer' 
+                  {...register('month')}
+                />
               </div>
               <div id="monthError" className=' font-["Poppins"] text-red text-xs italic font-normal h-1 text-center lg:text-left lg:text-sm'>
                 <p id='validError' className='hidden'>Must be a valid month</p>
@@ -39,7 +85,9 @@ function Date() {
                 <label htmlFor="year">YEAR</label>
               </div>
               <div id="yearInput">
-                <input type="number" name='year' placeholder='YYYY' className='pl-4 pr-0 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px] mb-1 lg:text-[32px] lg:tracking-[0.32px] lg:px-6 lg:w-[160px] hover:border-purple cursor-pointer' />
+                <input type="number" name='year' placeholder='YYYY' className='pl-4 pr-0 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px] mb-1 lg:text-[32px] lg:tracking-[0.32px] lg:px-6 lg:w-[160px] hover:border-purple cursor-pointer' 
+                  {...register('year')}
+                />
               </div>
               <div id="yearError" className=' font-["Poppins"] text-red text-xs italic font-normal h-1 text-center lg:text-left lg:text-sm'>
                 <p id='validError' className='hidden'>Must be in the past</p>
@@ -64,4 +112,4 @@ function Date() {
   )
 }
 
-export default Date
+export default TheDate
