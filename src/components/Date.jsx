@@ -1,19 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Arrow from '../assets/images/icon-arrow.svg'
 import { useForm } from 'react-hook-form'
 
-function TheDate() {
+function TheDate({userYear}) {
   
-  const [day, setDay] = useState('')
-  const [month, setMonth] = useState('')
-  const [year, setYear] = useState('')
-  const [date, setDate] = useState([])
-
-  console.log(`the day is ${day}`)
-  console.log(`the month is ${month}`)
-  console.log(`the year is ${year}`)
-  console.log(`the date is ${date}`)
-
   const { register, resetField, handleSubmit, formState: {errors} } = useForm({defaultValues: {
     day: '',
     month: '',
@@ -24,21 +14,27 @@ function onSubmit() {
   const day = document.getElementById('dayInput').firstChild.value
   const month = document.getElementById('monthInput').firstChild.value
   const year = document.getElementById('yearInput').firstChild.value
-  console.log(day, month, year)
 
-  setDay(day)
-  setMonth(month)
-  setYear(year)
+  const userDate = [year, month, day]
 
-  
-  setDate([year, month, day])
+  const birthDate = new Date(userDate)
+  const today = new Date()
+  const currentYear = today.getFullYear()
+  const currentMonth = today.getMonth()
+  const currentDay = today.getDay()
+
+  // const for months old / const for days old
+  const yearsOld = currentYear - birthDate.getFullYear();
+  userYear(yearsOld)
 
 }
 
 
-console.log(date)
-const birthdate = new Date(date)
-console.log(birthdate)
+
+
+
+
+
 
 function onError() {
   console.log('error')
