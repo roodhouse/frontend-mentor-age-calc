@@ -12,7 +12,12 @@ function Date() {
                 <label htmlFor="day">DAY</label>
               </div>
               <div id="dayInput">
-                <input type="number" name='day' placeholder='DD' className='px-4 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px]' />
+                <input type="number" name='day' placeholder='DD' className='px-4 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px] mb-1' />
+              </div>
+              <div id="dayError" className=' font-["Poppins"] text-red text-xs italic font-normal h-1 text-center'>
+                <p id='validError' className='hidden'>Must be a valid day</p>
+                <p id='reqError' className='hidden'>This field is required</p>
+                <p id='fullValidError' className='hidden'>Must be a valid day</p>
               </div>
             </div>
 
@@ -21,7 +26,11 @@ function Date() {
                 <label htmlFor="month">MONTH</label>
               </div>
               <div id="monthInput">
-                <input type="number" name='month' placeholder='MM' className='px-4 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px]' />
+                <input type="number" name='month' placeholder='MM' className='px-4 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px] mb-1' />
+              </div>
+              <div id="monthError" className=' font-["Poppins"] text-red text-xs italic font-normal h-1 text-center'>
+                <p id='validError' className='hidden'>Must be a valid month</p>
+                <p id='reqError' className='hidden'>This field is required</p>
               </div>
             </div>
 
@@ -30,7 +39,11 @@ function Date() {
                 <label htmlFor="year">YEAR</label>
               </div>
               <div id="yearInput">
-                <input type="number" name='year' placeholder='YYYY' className='pl-4 pr-0 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px]' />
+                <input type="number" name='year' placeholder='YYYY' className='pl-4 pr-0 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px] mb-1' />
+              </div>
+              <div id="yearError" className=' font-["Poppins"] text-red text-xs italic font-normal h-1 text-center'>
+                <p id='validError' className='hidden'>Must be in the past</p>
+                <p id='reqError' className='hidden'>This field is required</p>
               </div>
             </div>
           </div>
