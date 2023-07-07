@@ -5,9 +5,9 @@ import Output from './components/Output'
 
 function App() {
 
-  const [year, setYear] = useState()
-  const [month, setMonth] = useState()
-  const [day, setDay] = useState()
+  const [year, setYear] = useState('--')
+  const [month, setMonth] = useState('--')
+  const [day, setDay] = useState('--')
   console.log(year, month, day)
 
   function userYear(userYear) {
@@ -30,7 +30,7 @@ function App() {
           <Date userYear={userYear} userMonth={userMonth} userDay={userDay}/>
         </div>
         <div id='outputWrapper'>
-          <Output />
+          <Output year={year} month={month} day={day}/>
         </div>
       </div>
      </div>

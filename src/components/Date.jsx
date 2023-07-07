@@ -79,22 +79,7 @@ function onError() {
       <div id="dateContainer">
         <form noValidate onSubmit={handleSubmit(onSubmit, onError)}>
           <div id="inputContainer" className='flex mb-8 lg:mb-0'>
-            <div id="dayContainer" className='mr-4 lg:mr-8'>
-              <div id="dayLabel" className='font-["Poppins"] text-xs tracking-[3px] font-bold text-gray mb-1 lg:text-sm lg:tracking-[3.5px]'>
-                <label htmlFor="day">DAY</label>
-              </div>
-              <div id="dayInput">
-                <input type="number" name='day' placeholder='DD' className='px-4 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px] mb-1 lg:text-[32px] lg:tracking-[0.32px] lg:px-6 lg:w-[160px] hover:border-purple cursor-pointer' 
-                  {...register('day')}
-                />
-              </div>
-              <div id="dayError" className=' font-["Poppins"] text-red text-xs italic font-normal h-1 text-center lg:text-left lg:text-sm'>
-                <p id='validError' className='hidden'>Must be a valid day</p>
-                <p id='reqError' className='hidden'>This field is required</p>
-                <p id='fullValidError' className='hidden'>Must be a valid day</p>
-              </div>
-            </div>
-
+            
             <div id="monthContainer" className='mr-4 lg:mr-8'>
               <div id="monthLabel" className='font-["Poppins"] text-xs tracking-[3px] font-bold text-gray mb-1 lg:text-sm lg:tracking-[3.5px]'>
                 <label htmlFor="month">MONTH</label>
@@ -106,6 +91,22 @@ function onError() {
               </div>
               <div id="monthError" className=' font-["Poppins"] text-red text-xs italic font-normal h-1 text-center lg:text-left lg:text-sm'>
                 <p id='validError' className='hidden'>Must be a valid month</p>
+                <p id='reqError' className='hidden'>This field is required</p>
+                <p id='fullValidError' className='hidden'>Must be a valid date</p>
+              </div>
+            </div>
+
+            <div id="dayContainer" className='mr-4 lg:mr-8'>
+              <div id="dayLabel" className='font-["Poppins"] text-xs tracking-[3px] font-bold text-gray mb-1 lg:text-sm lg:tracking-[3.5px]'>
+                <label htmlFor="day">DAY</label>
+              </div>
+              <div id="dayInput">
+                <input type="number" name='day' placeholder='DD' className='px-4 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px] mb-1 lg:text-[32px] lg:tracking-[0.32px] lg:px-6 lg:w-[160px] hover:border-purple cursor-pointer' 
+                  {...register('day')}
+                />
+              </div>
+              <div id="dayError" className=' font-["Poppins"] text-red text-xs italic font-normal h-1 text-center lg:text-left lg:text-sm'>
+                <p id='validError' className='hidden'>Must be a valid day</p>
                 <p id='reqError' className='hidden'>This field is required</p>
               </div>
             </div>
