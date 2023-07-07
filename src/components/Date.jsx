@@ -2,7 +2,7 @@ import React from 'react'
 import Arrow from '../assets/images/icon-arrow.svg'
 import { useForm } from 'react-hook-form'
 
-function TheDate({userYear}) {
+function TheDate({ userYear, userMonth }) {
   
   const { register, resetField, handleSubmit, formState: {errors} } = useForm({defaultValues: {
     day: '',
@@ -23,8 +23,35 @@ function onSubmit() {
   const currentMonth = today.getMonth()
   const currentDay = today.getDay()
 
-  // const for months old / const for days old
+  // get the year old
   const yearsOld = currentYear - birthDate.getFullYear();
+
+  // get the months old
+  let monthsOld = birthDate.getMonth() - currentMonth
+  if (monthsOld === -1 ){
+    monthsOld = 11
+  } else if (monthsOld === -2) {
+    monthsOld = 10
+  } else if (monthsOld === -3) {
+    monthsOld = 9
+  } else if (monthsOld === -4) {
+    monthsOld = 8
+  } else if (monthsOld === -5) {
+    monthsOld = 7
+  } else if (monthsOld === - 6) {
+    monthsOld = 6
+  }
+
+  // get the days old *** here need to update algo for days
+  const now = Date.now()
+  let lastBirthday = [today.getFullYear(), month, day];
+  lastBirthday = new Date(lastBirthday).getTime()
+  const oneDay = 1000 * 60 * 60 * 24;
+  let daysOld = lastBirthday - now 
+  daysOld = Math.round(daysOld / oneDay) + 1
+  console.log(daysOld)
+
+  userMonth(monthsOld)
   userYear(yearsOld)
 
 }
