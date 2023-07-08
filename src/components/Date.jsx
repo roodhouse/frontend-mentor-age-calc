@@ -99,7 +99,7 @@ function onError(e) {
                   {...register('month', {
                     required: 'This field is required',
                     pattern: {
-                      value: /\b([1-9]|1[0-2])\b/,
+                      value: /\b([1-9]|(0[1-9])|1[0-2])\b/,
                       message: 'Must be a valid month'
                     },
                     min: {
@@ -163,7 +163,7 @@ function onError(e) {
                     },
                     max: {
                       value: 2023,
-                      message: 'Must be the past'
+                      message: 'Must be in the past'
                     }
                   })}
                 />
