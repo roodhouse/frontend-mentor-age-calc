@@ -1,3 +1,0 @@
-1. tailwind
-2. fonts
-3. colors
