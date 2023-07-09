@@ -251,7 +251,7 @@ function badDate() {
                   {...register('year', {
                     required: 'This field is required',
                     min: {
-                      value: 1,
+                      value: 1900,
                       message: 'Must be a valid date'
                     },
                     max: {
