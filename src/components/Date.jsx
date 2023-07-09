@@ -2,15 +2,12 @@ import React, { useState } from 'react'
 import Arrow from '../assets/images/icon-arrow.svg'
 import { useForm } from 'react-hook-form'
 
-
-// can still enter an invalid date. need to update month function to take into account months with 28-31 days
-// see this stackoverflow https://stackoverflow.com/questions/12251325/javascript-date-to-calculate-age-work-by-the-day-months-years
 function TheDate({ userYear, userMonth, userDay }) {
   const [day, setDay] = useState('')
   const [month, setMonth] = useState('')
   const [year, setYear] = useState('')
-
-  console.log(day)
+  let dateEntered = [year, month, day]
+  dateEntered = new Date(dateEntered)
 
   const { register, resetField, handleSubmit, formState: {errors} } = useForm({defaultValues: {
     day: '',
@@ -27,7 +24,6 @@ function onSubmit() {
 
   const birthDate = new Date(userDate)
   const today = new Date()
-  const currentYear = today.getFullYear()
   const currentMonth = today.getMonth()
 
   // get the year old
@@ -82,7 +78,6 @@ function onSubmit() {
 function onError(e) {
   
   for (const error in e) {
-    console.log(e)
    // change border color
    const errorBorder = document.getElementById(error+'Input').firstChild;
    errorBorder.style.borderColor = '#FF5959';
@@ -123,6 +118,32 @@ if ((month === '2' || month === '02') && (day > '28')) {
   badDate()
 }
 
+// Check for future dates
+if (dateEntered.getTime() >= Date.now()) {
+  const submitBtn = document.getElementById('submitBtn')
+  const monthValidError = document.getElementById('monthValidError')
+  const theUserMonth = document.getElementById('theUserMonth')
+  const theUserDay = document.getElementById('theUserDay')
+  const theUserYear = document.getElementById('theUserYear')
+  
+  submitBtn.setAttribute('disabled', "")
+  monthValidError.innerHTML = 'This is in the future'
+
+  theUserMonth.addEventListener('input', function() {
+    submitBtn.removeAttribute('disabled')
+    monthValidError.innerHTML = ''
+  })
+  theUserDay.addEventListener('input', function() {
+    submitBtn.removeAttribute('disabled')
+    monthValidError.innerHTML = ''
+  })
+
+  theUserYear.addEventListener('input', function(){
+    submitBtn.removeAttribute('disabled')
+    monthValidError.innerHTML = ''
+  })
+}
+
 function badDate() {
   const dayValidError = document.getElementById('dayValidError')
   const submitBtn = document.getElementById('submitBtn')
@@ -138,20 +159,17 @@ function badDate() {
     submitBtn.removeAttribute('disabled')
     dayValidError.innerHTML = ''
     theUserDay.style.borderColor = '#DCDCDC'
-    console.log('changing after error, month')
   })
   theUserDay.addEventListener('input', function() {
     submitBtn.removeAttribute('disabled')
     dayValidError.innerHTML = ''
     theUserDay.style.borderColor = '#DCDCDC'
-    console.log('changing after error, day')
   })
 
   theUserYear.addEventListener('input', function(){
     submitBtn.removeAttribute('disabled')
     dayValidError.innerHTML = ''
     theUserDay.style.borderColor = '#DCDCDC'
-    console.log('changing after error, year')
   })
 
 

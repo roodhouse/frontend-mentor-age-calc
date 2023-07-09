@@ -8,7 +8,6 @@ function App() {
   const [year, setYear] = useState('--')
   const [month, setMonth] = useState('--')
   const [day, setDay] = useState('--')
-  console.log(year, month, day)
 
   function userYear(userYear) {
     setYear(userYear)
