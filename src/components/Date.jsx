@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Arrow from '../assets/images/icon-arrow.svg'
 import { useForm } from 'react-hook-form'
 
+
+// can still enter an invalid date. need to update month function to take into account months with 28-31 days
+// see this stackoverflow https://stackoverflow.com/questions/12251325/javascript-date-to-calculate-age-work-by-the-day-months-years
 function TheDate({ userYear, userMonth, userDay }) {
-  
+  const [day, setDay] = useState('')
+  const [month, setMonth] = useState('')
+  const [year, setYear] = useState('')
+
+  console.log(day)
+
   const { register, resetField, handleSubmit, formState: {errors} } = useForm({defaultValues: {
     day: '',
     month: '',
@@ -23,7 +31,9 @@ function onSubmit() {
   const currentMonth = today.getMonth()
 
   // get the year old
-  const yearsOld = currentYear - birthDate.getFullYear();
+  const dMil = Date.now() - birthDate.getTime()
+  const convertAge = new Date(dMil)
+  const yearsOld = Math.abs(convertAge.getUTCFullYear() - 1970)
 
   // get the months old
   let monthsOld = birthDate.getMonth() - currentMonth
@@ -81,7 +91,70 @@ function onError(e) {
       errorBorder.style.borderColor = '#DCDCDC'
    })
   }
-  
+}
+
+// check if the day input exceeds the amount of days in a given month
+// store the month in state on blur
+function dateMonthCheck(e) {
+  setMonth(e.target.value)
+}
+// store the day in state on blur
+function dateDayCheck(e) {
+  setDay(e.target.value)
+}
+
+const leapYears = ["1900", "1904", "1908", "1912", "1916", "1920", "1924", "1928", "1932", "1936", "1940", "1944", "1948", "1952", "1956", "1960", "1964", "1968", "1972", "1976", "1980", "1984", "1988", "1992", "1996", "2000", "2004", "2008", "2012", "2016", "2020"]
+
+// store the year in state on blur
+function dateYearCheck(e) {
+  setYear(e.target.value)
+}
+// check feb
+if ((month === '2' || month === '02') && (day > '28')) {
+  if (year === leapYears.find(leap => leap === year) || year === '') {
+    console.log('leap year')
+    if (day > '29') {
+      badDate()
+    } 
+  } else if (year !== leapYears.find(leap => leap === year) && year !== '') {
+    badDate()
+  }
+} else if ((month === '4' || month === '04' || month === '6' || month === '06' || month === '9' || month === '09' || month === '11') && (day > '30')) {
+  badDate()
+}
+
+function badDate() {
+  const dayValidError = document.getElementById('dayValidError')
+  const submitBtn = document.getElementById('submitBtn')
+  const theUserMonth = document.getElementById('theUserMonth')
+  const theUserDay = document.getElementById('theUserDay')
+  const theUserYear = document.getElementById('theUserYear')
+
+  dayValidError.innerHTML = 'Must be a valid date'
+  submitBtn.setAttribute('disabled', "")
+  theUserDay.style.borderColor = '#FF5959';
+
+  theUserMonth.addEventListener('input', function() {
+    submitBtn.removeAttribute('disabled')
+    dayValidError.innerHTML = ''
+    theUserDay.style.borderColor = '#DCDCDC'
+    console.log('changing after error, month')
+  })
+  theUserDay.addEventListener('input', function() {
+    submitBtn.removeAttribute('disabled')
+    dayValidError.innerHTML = ''
+    theUserDay.style.borderColor = '#DCDCDC'
+    console.log('changing after error, day')
+  })
+
+  theUserYear.addEventListener('input', function(){
+    submitBtn.removeAttribute('disabled')
+    dayValidError.innerHTML = ''
+    theUserDay.style.borderColor = '#DCDCDC'
+    console.log('changing after error, year')
+  })
+
+
 }
 
   return (
@@ -95,7 +168,7 @@ function onError(e) {
                 <label htmlFor="month">MONTH</label>
               </div>
               <div id="monthInput">
-                <input type="number" name='month' min={0} max={12} placeholder='MM' className='px-4 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px] mb-1 lg:text-[32px] lg:tracking-[0.32px] lg:px-6 lg:w-[160px] hover:border-purple cursor-pointer' 
+                <input type="number" id='theUserMonth' name='month' min={0} max={12} placeholder='MM' className='px-4 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px] mb-1 lg:text-[32px] lg:tracking-[0.32px] lg:px-6 lg:w-[160px] hover:border-purple cursor-pointer' 
                   {...register('month', {
                     required: 'This field is required',
                     pattern: {
@@ -109,7 +182,8 @@ function onError(e) {
                     max: {
                       value: 12,
                       message: 'Must be a valid date'
-                    }
+                    },
+                    onBlur: (e) => (dateMonthCheck(e))
                   })}
                 />
               </div>
@@ -125,11 +199,11 @@ function onError(e) {
                 <label htmlFor="day">DAY</label>
               </div>
               <div id="dayInput">
-                <input type="number" name='day' min={0} max={31} placeholder='DD' className='px-4 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px] mb-1 lg:text-[32px] lg:tracking-[0.32px] lg:px-6 lg:w-[160px] hover:border-purple cursor-pointer' 
+                <input type="number" name='day' id='theUserDay' min={0} max={31} placeholder='DD' className='px-4 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px] mb-1 lg:text-[32px] lg:tracking-[0.32px] lg:px-6 lg:w-[160px] hover:border-purple cursor-pointer' 
                   {...register('day', {
                     required: 'This field is required',
                     pattern: {
-                      value: /\b([1-9]|[12][0-9]|3[01])\b/,
+                      value: /\b([1-9]|(0[1-9])|[12][0-9]|3[01])\b/,
                       message: 'Must be a valid day'
                     },
                     min: {
@@ -139,7 +213,8 @@ function onError(e) {
                     max: {
                       value: 31,
                       message: 'Must be a valid date'
-                    }
+                    },
+                    onBlur: (e) => (dateDayCheck(e))
                   })}
                 />
               </div>
@@ -154,7 +229,7 @@ function onError(e) {
                 <label htmlFor="year">YEAR</label>
               </div>
               <div id="yearInput">
-                <input type="number" name='year' placeholder='YYYY' className='pl-4 pr-0 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px] mb-1 lg:text-[32px] lg:tracking-[0.32px] lg:px-6 lg:w-[160px] hover:border-purple cursor-pointer' 
+                <input type="number" name='year' id='theUserYear' placeholder='YYYY' className='pl-4 pr-0 py-3 border border-solid border-line rounded-lg w-[87px] text-black text-[20px] font-["Poppins"] font-bold tracking-[0.2px] mb-1 lg:text-[32px] lg:tracking-[0.32px] lg:px-6 lg:w-[160px] hover:border-purple cursor-pointer' 
                   {...register('year', {
                     required: 'This field is required',
                     min: {
@@ -164,7 +239,8 @@ function onError(e) {
                     max: {
                       value: 2023,
                       message: 'Must be in the past'
-                    }
+                    },
+                    onBlur: (e) => (dateYearCheck(e))
                   })}
                 />
               </div>
@@ -178,7 +254,7 @@ function onError(e) {
           <div id="submitContainer" className='flex items-center'>
             <div id="lineOneContainer" className='w-[116px] h-[1px] bg-line lg:order-1 lg:w-[316px]'></div>
             <div id='buttonContainer' className='w-16 h-16 bg-purple rounded-[216px] flex justify-center items-center lg:w-24 lg:h-24 lg:order-3 cursor-pointer hover:bg-black'>
-              <button type='submit'>
+              <button type='submit' id='submitBtn'>
                 <img src={Arrow} alt="Arrow" className='h-6 w-6 lg:w-11 lg:h-11' />
               </button>
             </div>
