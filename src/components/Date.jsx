@@ -9,7 +9,7 @@ function TheDate({ userYear, userMonth, userDay }) {
   let dateEntered = [year, month, day]
   dateEntered = new Date(dateEntered)
 
-  const { register, resetField, handleSubmit, formState: {errors} } = useForm({defaultValues: {
+  const { register, handleSubmit, formState: {errors} } = useForm({defaultValues: {
     day: '',
     month: '',
     year: ''
