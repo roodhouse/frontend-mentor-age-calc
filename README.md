@@ -45,7 +45,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [solution URL](https://github.com/roodhouse/frontend-mentor-age-calc)
-- Live Site URL: [Add live site URL here](https://age.rugh.us)
+- Live Site URL: [live site URL](https://age.rugh.us)
 
 ## My process
 
