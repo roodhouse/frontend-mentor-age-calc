@@ -1,11 +1,40 @@
 import React, { useState } from 'react'
 import Arrow from '../assets/images/icon-arrow.svg'
 import { useForm } from 'react-hook-form'
+import 'animate.css';
 
 function TheDate({ userYear, userMonth, userDay }) {
   const [day, setDay] = useState('')
   const [month, setMonth] = useState('')
   const [year, setYear] = useState('')
+  const animateYear = document.getElementById('userYear')
+  const animateMonth = document.getElementById('userMonth')
+  const animateDay = document.getElementById('userDay')
+
+  // remove animate on new input
+  if (animateDay) {
+    const theDay = document.getElementById('dayInput')
+    theDay.addEventListener('input', function() {
+      animateDay.classList.remove('animate__animated', 'animate__bounceIn')
+    })
+  }
+
+  if (animateMonth) {
+    const theMonth = document.getElementById('monthInput')
+    theMonth.addEventListener('input', function() {
+      animateMonth.classList.remove('animate__animated', 'animate__bounceIn')
+    })
+  }
+
+  if (animateYear) {
+    const theYear = document.getElementById('yearInput')
+    theYear.addEventListener('input', function() {
+      animateYear.classList.remove('animate__animated', 'animate__bounceIn')
+    })
+  }
+
+  
+
   let dateEntered = [year, month, day]
   dateEntered = new Date(dateEntered)
 
@@ -19,6 +48,7 @@ function onSubmit() {
   const day = document.getElementById('dayInput').firstChild.value
   const month = document.getElementById('monthInput').firstChild.value
   const year = document.getElementById('yearInput').firstChild.value
+  
 
   const userDate = [year, month, day]
 
@@ -69,6 +99,11 @@ function onSubmit() {
     nextBday = new Date(nextBday)
     daysOld = getDays(nextBday, today)
   }
+
+  // animate the fields
+  animateYear.classList.add('animate__animated', 'animate__bounceIn')
+  animateMonth.classList.add('animate__animated', 'animate__bounceIn')
+  animateDay.classList.add('animate__animated', 'animate__bounceIn')
   
   userDay(daysOld)
   userMonth(monthsOld)
