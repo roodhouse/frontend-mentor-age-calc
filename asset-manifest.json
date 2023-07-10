@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/frontend-mentor-age-calc/static/css/main.18bb8601.css",
-    "main.js": "/frontend-mentor-age-calc/static/js/main.5729dac9.js",
+    "main.css": "/frontend-mentor-age-calc/static/css/main.1ce71230.css",
+    "main.js": "/frontend-mentor-age-calc/static/js/main.3076561d.js",
     "index.html": "/frontend-mentor-age-calc/index.html",
     "static/media/icon-arrow.svg": "/frontend-mentor-age-calc/static/media/icon-arrow.76e952b1b427b84b83bd01f2f4822499.svg",
-    "main.18bb8601.css.map": "/frontend-mentor-age-calc/static/css/main.18bb8601.css.map",
-    "main.5729dac9.js.map": "/frontend-mentor-age-calc/static/js/main.5729dac9.js.map"
+    "main.1ce71230.css.map": "/frontend-mentor-age-calc/static/css/main.1ce71230.css.map",
+    "main.3076561d.js.map": "/frontend-mentor-age-calc/static/js/main.3076561d.js.map"
   },
   "entrypoints": [
-    "static/css/main.18bb8601.css",
-    "static/js/main.5729dac9.js"
+    "static/css/main.1ce71230.css",
+    "static/js/main.3076561d.js"
   ]
 }
