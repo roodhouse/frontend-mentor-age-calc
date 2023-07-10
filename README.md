@@ -58,7 +58,7 @@ Users should be able to:
 
 ### What I learned
 
-This project was a really good learning experience for me. It pushed me and I feel like I am better developer for it. 
+This project was very rewarding for me. It really pushed me several times. I could have mailed it in but I kept pushing. When I was finished, I went live only to find out that I had several mobile and safari browser issues. The issues surrounded how I was formatting the date. I am glad to have pounded through this. I feel like I am a better developer because of it. 
 
 ## Author
 
