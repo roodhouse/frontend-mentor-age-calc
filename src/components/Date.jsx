@@ -52,7 +52,6 @@ function onSubmit() {
   const userDate = month + '/' + day + '/' + year
 
   let birthDate = new Date(userDate)
-  console.log(birthDate)
   const today = new Date()
   const currentMonth = today.getMonth()
 
@@ -92,20 +91,12 @@ function onSubmit() {
 
   let nextBday = month + '/' + day + '/' + today.getFullYear()
   nextBday = new Date(nextBday)
-  console.log(nextBday)
-  console.log(nextBday.getTime())
-  console.log(today.getTime())
   if (nextBday.getTime() < today.getTime() ) {
-    console.log('here man', nextBday, today)
     daysOld = getDays(nextBday, today)
   } else {
     let previousYear = today.getFullYear() -1
-    console.log(previousYear)
-    console.log(nextBday)
     nextBday = month + '/' + day + '/' + previousYear
-    console.log(nextBday)
     nextBday = new Date(nextBday)
-    console.log(nextBday, today)
     daysOld = getDays(nextBday, today)
   }
 
@@ -151,7 +142,6 @@ function dateYearCheck(e) {
 // check feb
 if ((month === '2' || month === '02') && (day > '28')) {
   if (year === leapYears.find(leap => leap === year) || year === '') {
-    console.log('leap year')
     if (day > '29') {
       badDate()
     } 
