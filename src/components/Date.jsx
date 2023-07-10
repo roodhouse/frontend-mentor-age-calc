@@ -48,11 +48,11 @@ function onSubmit() {
   const day = document.getElementById('dayInput').firstChild.value
   const month = document.getElementById('monthInput').firstChild.value
   const year = document.getElementById('yearInput').firstChild.value
-  
 
-  const userDate = [year, month, day]
+  const userDate = month + '/' + day + '/' + year
 
-  const birthDate = new Date(userDate)
+  let birthDate = new Date(userDate)
+  console.log(birthDate)
   const today = new Date()
   const currentMonth = today.getMonth()
 
@@ -90,13 +90,22 @@ function onSubmit() {
 
   }
 
-  let nextBday = [today.getFullYear(), month, day]
+  let nextBday = month + '/' + day + '/' + today.getFullYear()
   nextBday = new Date(nextBday)
+  console.log(nextBday)
+  console.log(nextBday.getTime())
+  console.log(today.getTime())
   if (nextBday.getTime() < today.getTime() ) {
+    console.log('here man', nextBday, today)
     daysOld = getDays(nextBday, today)
   } else {
-    nextBday = [today.getFullYear() - 1, month, day]
+    let previousYear = today.getFullYear() -1
+    console.log(previousYear)
+    console.log(nextBday)
+    nextBday = month + '/' + day + '/' + previousYear
+    console.log(nextBday)
     nextBday = new Date(nextBday)
+    console.log(nextBday, today)
     daysOld = getDays(nextBday, today)
   }
 
